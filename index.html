@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <script src="https://pl29607349.effectivecpmnetwork.com/67/6f/6c/676f6c5d21142fdd60c593fe3290ef7c.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="PLAYHUB - Platform Streaming Premium. Akses pustaka video definisi tinggi instan secara eksklusif.">
@@ -10,13 +11,17 @@
     
     <title>PLAYHUB | Premium Streaming Platform</title>
     
+    <link rel="icon" type="image/gif" href="https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif">
+    
+    <link rel="manifest" href='data:application/manifest+json;utf8,{"name":"PLAYHUB","short_name":"PLAYHUB","start_url":".","display":"standalone","background_color":"#000000","theme_color":"#00d2ff","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/1179/1179120.png","sizes":"512x512","type":"image/png"}]}'>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Upgraded to Luxurious Minimalist Dark Theme with Blue LED Accents */
-            --primary: #00d2ff; 
+            var(--primary): #00d2ff; 
+            --primary: #00d2ff;
             --primary-glow: rgba(0, 210, 255, 0.3);
             --bg-base: #000000; 
             --bg-card: #0a0a0c; 
@@ -62,8 +67,18 @@
             backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); z-index: 100;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
+        .nav-left-group { display: flex; align-items: center; gap: 20px; }
         .logo { font-size: 24px; font-weight: 800; color: var(--text-main); text-decoration: none; letter-spacing: -0.5px; }
         .logo span { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
+        
+        /* ICON INSTALL PWA */
+        .btn-install-app {
+            background: rgba(0, 210, 255, 0.15); color: var(--primary); border: 1px solid var(--primary);
+            padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer;
+            display: none; align-items: center; gap: 6px; transition: var(--transition);
+        }
+        .btn-install-app:hover { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary-glow); }
+
         .nav-links { display: flex; gap: 32px; list-style: none; }
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: var(--transition); }
         .nav-links a:hover, .nav-links .active-nav { color: var(--text-main); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
@@ -97,8 +112,23 @@
             box-shadow: 0 12px 30px rgba(36, 161, 222, 0.4); 
         }
 
+        /* ADS BORDER PLACEMENTS */
+        .ad-border {
+            background: rgba(255, 255, 255, 0.03); border: 2px dashed rgba(255, 255, 255, 0.2);
+            color: var(--text-muted); text-align: center; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            min-height: 90px; padding: 15px; margin: 20px 0; font-size: 12px; font-weight: 600;
+            width: 100%; overflow: hidden; /* Ukuran menyesuaikan konten dalam */
+        }
+        .ad-border.grid-ad { grid-column: 1 / -1; margin: 10px 0; }
+        
+        .bottom-ads-group {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px; padding: 0 6%; margin-top: 40px;
+        }
+
         /* MAIN GALLERY */
-        main { padding: 60px 6%; min-height: 40vh; scroll-margin-top: 90px; position: relative; z-index: 2; }
+        main { padding: 60px 6% 20px; min-height: 40vh; scroll-margin-top: 90px; position: relative; z-index: 2; }
         .section-title { font-size: 22px; font-weight: 700; margin-bottom: 32px; display: flex; align-items: center; gap: 12px; letter-spacing: -0.5px;}
         .section-title i { color: var(--primary); font-size: 20px; text-shadow: 0 0 10px var(--primary-glow); }
         
@@ -172,9 +202,35 @@
         footer { 
             padding: 40px 6%; text-align: center; 
             border-top: 1px solid rgba(255, 255, 255, 0.03); 
-            margin-top: 60px; background: #030303;
+            margin-top: 40px; background: #030303;
         }
         footer p { color: var(--text-muted); font-size: 13px; opacity: 0.7; letter-spacing: 0.5px; }
+
+        /* MODAL VERIFIKASI UMUR 18+ */
+        .age-gate-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(15px); z-index: 99999;
+            display: flex; justify-content: center; align-items: center; padding: 20px;
+        }
+        .age-gate-content {
+            background: #111; padding: 40px; border-radius: var(--radius-lg);
+            text-align: center; max-width: 400px; border: 1px solid var(--primary);
+            box-shadow: 0 0 40px rgba(0, 210, 255, 0.1);
+        }
+        .age-gate-content i { font-size: 50px; color: #e50914; margin-bottom: 20px; }
+        .age-gate-content h2 { margin-bottom: 15px; font-size: 22px; color: #fff; }
+        .age-gate-content p { color: var(--text-muted); font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
+        .age-btns { display: flex; gap: 15px; flex-direction: column; }
+        .age-btn-yes {
+            background: var(--primary); color: #000; border: none; padding: 14px;
+            border-radius: 12px; font-weight: 700; cursor: pointer; transition: var(--transition);
+        }
+        .age-btn-yes:hover { background: #00b8e6; transform: scale(1.02); }
+        .age-btn-no {
+            background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1);
+            padding: 14px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: var(--transition);
+        }
+        .age-btn-no:hover { background: rgba(255,255,255,0.1); }
 
         /* STREAMING POPUP MODAL */
         .modal-overlay {
@@ -190,7 +246,7 @@
             position: relative; box-shadow: 0 25px 80px rgba(0, 0, 0, 1);
             transform: scale(0.95) translateY(15px); transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); 
-            display: flex; flex-direction: column; max-height: 95vh; 
+            display: flex; flex-direction: column; max-height: 95vh; overflow-y: auto;
         }
         .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
 
@@ -226,39 +282,22 @@
 
         /* MODAL FOOTER - DASHBOARD KONTROL UTAMA */
         .modal-footer {
-            padding: 20px 24px; display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 24px; display: flex; flex-direction: column;
             background: rgba(5,5,5,0.8); border-top: 1px solid rgba(255,255,255,0.03);
-            flex-wrap: wrap; gap: 16px;
+            gap: 16px;
         }
 
         .controls-group { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; width: 100%; }
 
         /* KONTROL SELEKTOR KUALITAS PREMIUM */
         .premium-quality-selector {
-            position: relative;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px; 
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            height: 46px; 
-            flex: 1;
-            min-width: 190px;
-            user-select: none;
-            cursor: pointer;
+            position: relative; background: rgba(255, 255, 255, 0.03); border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.06); transition: var(--transition);
+            display: flex; flex-direction: column; height: 46px; flex: 1; min-width: 190px;
+            user-select: none; cursor: pointer;
         }
-        .premium-quality-selector:hover {
-            background: rgba(255, 255, 255, 0.06); border-color: rgba(0, 210, 255, 0.3);
-        }
-        .selector-trigger {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            padding: 0 16px;
-            gap: 12px;
-        }
+        .premium-quality-selector:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(0, 210, 255, 0.3); }
+        .selector-trigger { display: flex; align-items: center; width: 100%; height: 100%; padding: 0 16px; gap: 12px; }
         .selector-label { font-size: 13px; font-weight: 600; color: var(--text-main); flex: 1; }
         .chevron-icon { color: var(--text-muted); font-size: 12px; transition: transform 0.3s ease; }
         .premium-quality-selector.menu-open .chevron-icon { transform: rotate(180deg); color: var(--primary); }
@@ -266,15 +305,11 @@
         /* MENU POPOVER MENU LIST */
         .custom-quality-menu {
             position: absolute; bottom: 56px; left: 0; width: 100%;
-            background: #121215; border-radius: 14px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            opacity: 0; visibility: hidden; transform: translateY(15px);
+            background: #121215; border-radius: 14px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05); opacity: 0; visibility: hidden; transform: translateY(15px);
             transition: var(--transition); z-index: 110; overflow: hidden; padding: 8px;
         }
-        .premium-quality-selector.menu-open .custom-quality-menu {
-            opacity: 1; visibility: visible; transform: translateY(0);
-        }
+        .premium-quality-selector.menu-open .custom-quality-menu { opacity: 1; visibility: visible; transform: translateY(0); }
         
         .quality-option-row {
             display: flex; align-items: center; justify-content: space-between;
@@ -282,76 +317,33 @@
             font-size: 13px; font-weight: 500; transition: all 0.2s ease;
         }
         .quality-option-row:hover { background: rgba(255, 255, 255, 0.04); color: white; }
-        .quality-option-row.option-selected {
-            font-weight: 600; color: var(--primary); background: rgba(0, 210, 255, 0.05);
-        }
+        .quality-option-row.option-selected { font-weight: 600; color: var(--primary); background: rgba(0, 210, 255, 0.05); }
 
-        /* INDIKATOR BULAT RADIO BUTTON KUSTOM */
-        .custom-radio-circle {
-            width: 18px; height: 18px; border: 2px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50%; position: relative; transition: var(--transition);
-        }
-        .quality-option-row.option-selected .custom-radio-circle {
-            border-color: var(--primary); background: rgba(0, 210, 255, 0.2);
-        }
-        .quality-option-row.option-selected .custom-radio-circle::after {
-            content: ''; position: absolute; top: 4px; left: 4px; width: 6px; height: 6px;
-            background: var(--primary); border-radius: 50%; box-shadow: 0 0 8px var(--primary);
-        }
+        .custom-radio-circle { width: 18px; height: 18px; border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 50%; position: relative; transition: var(--transition); }
+        .quality-option-row.option-selected .custom-radio-circle { border-color: var(--primary); background: rgba(0, 210, 255, 0.2); }
+        .quality-option-row.option-selected .custom-radio-circle::after { content: ''; position: absolute; top: 4px; left: 4px; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 8px var(--primary); }
 
-        .status-dot {
-            width: 8px; height: 8px; border-radius: 50%; background: var(--primary);
-            display: inline-block; transition: var(--transition);
-            box-shadow: 0 0 10px var(--primary-glow);
-        }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); display: inline-block; transition: var(--transition); box-shadow: 0 0 10px var(--primary-glow); }
         .dot-720p { background: #24A1DE; box-shadow: 0 0 10px rgba(36, 161, 222, 0.6); }
         .dot-480p { background: #e5a93b; box-shadow: 0 0 10px rgba(229, 169, 59, 0.6); }
         .dot-360p { background: #a1a1aa; box-shadow: 0 0 10px rgba(161, 161, 170, 0.4); }
 
-        /* GRUP FULLSCREEN LAYOUT */
         .fullscreen-buttons-row { display: flex; gap: 12px; width: 100%; }
-        
-        .btn-fullscreen-opt {
-            flex: 1; background: rgba(255, 255, 255, 0.03); color: var(--text-muted);
-            border: 1px solid rgba(255, 255, 255, 0.06); height: 46px; border-radius: 12px;
-            font-size: 13px; font-weight: 600; cursor: pointer; display: flex;
-            align-items: center; justify-content: center; gap: 8px; transition: var(--transition);
-        }
-        .btn-fullscreen-opt:hover {
-            background: rgba(255, 255, 255, 0.08); color: white; border-color: rgba(255, 255, 255, 0.15);
-        }
+        .btn-fullscreen-opt { flex: 1; background: rgba(255, 255, 255, 0.03); color: var(--text-muted); border: 1px solid rgba(255, 255, 255, 0.06); height: 46px; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: var(--transition); }
+        .btn-fullscreen-opt:hover { background: rgba(255, 255, 255, 0.08); color: white; border-color: rgba(255, 255, 255, 0.15); }
 
-        /* BUTTON PREMIUM DOWNLOAD */
-        .btn-download {
-            background: #ffffff; color: #000000; border: none;
-            height: 46px; padding: 0 28px; border-radius: 12px; font-size: 13px; font-weight: 700;
-            cursor: pointer; display: flex; align-items: center; gap: 8px; transition: var(--transition);
-        }
-        .btn-download:hover {
-            background: #e4e4e7; transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
-        }
+        .btn-download { background: #ffffff; color: #000000; border: none; height: 46px; padding: 0 28px; border-radius: 12px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: var(--transition); }
+        .btn-download:hover { background: #e4e4e7; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2); }
         .btn-download:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 
-        /* BUTTON NEXT */
-        .btn-next {
-            background: rgba(0, 210, 255, 0.1); color: var(--primary); 
-            border: 1px solid rgba(0, 210, 255, 0.2); 
-            height: 46px; padding: 0 28px; border-radius: 12px; font-size: 13px; font-weight: 700; 
-            cursor: pointer; display: flex; align-items: center; gap: 8px; transition: var(--transition);
-            width: 100%; justify-content: center;
-        }
-        .btn-next:hover { 
-            background: rgba(0, 210, 255, 0.2); border-color: var(--primary); 
-            box-shadow: 0 0 15px var(--primary-glow);
-        }
+        .btn-next { background: rgba(0, 210, 255, 0.1); color: var(--primary); border: 1px solid rgba(0, 210, 255, 0.2); height: 46px; padding: 0 28px; border-radius: 12px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: var(--transition); width: 100%; justify-content: center; }
+        .btn-next:hover { background: rgba(0, 210, 255, 0.2); border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero h1 { font-size: 34px; }
             .video-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
             .modal-overlay { padding: 12px; }
-            .modal-footer { padding: 16px; gap: 14px; }
             .controls-group { flex-direction: column; align-items: stretch; gap: 14px; }
             .premium-quality-selector { width: 100%; flex: none; }
             .btn-download { justify-content: center; width: 100%; }
@@ -361,8 +353,25 @@
 </head>
 <body>
 
+    <div class="age-gate-modal" id="ageModal">
+        <div class="age-gate-content">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <h2>Peringatan Konten Dewasa</h2>
+            <p>Website ini berisi materi yang diperuntukkan bagi penonton dewasa. Anda wajib berusia 18 tahun atau lebih untuk masuk.</p>
+            <div class="age-btns">
+                <button class="age-btn-yes" onclick="confirmAge(true)">YA, SAYA 18 TAHUN KE ATAS</button>
+                <button class="age-btn-no" onclick="confirmAge(false)">TIDAK, SAYA DI BAWAH UMUR</button>
+            </div>
+        </div>
+    </div>
+
     <nav>
-        <a href="#" class="logo">PLAY<span>HUB</span></a>
+        <div class="nav-left-group">
+            <a href="#" class="logo">PLAY<span>HUB</span></a>
+            <button class="btn-install-app" id="installBtn">
+                <i class="fa-solid fa-download"></i> Install
+            </button>
+        </div>
         <ul class="nav-links">
             <li><a href="#" class="active-nav" id="t-navHome">Beranda</a></li>
             <li><a href="#" id="t-navExplore">Eksplorasi</a></li>
@@ -380,8 +389,23 @@
             </a>
         </div>
     </section>
-
+    
+    
+<!-- --- (pasang kode disini) - IKLAN ATAS KOLEKSI --- -->
     <main id="main-gallery">
+        <div class="ad-border">
+            <script>
+  atOptions = {
+    'key' : '50a395c501f86021c8fb7fdddbd06771',
+    'format' : 'iframe',
+    'height' : 60,
+    'width' : 468,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/50a395c501f86021c8fb7fdddbd06771/invoke.js"></script>
+        </div>
+
         <h2 class="section-title"><i class="fa-solid fa-rectangle-list"></i> <span id="t-featuredColl">Koleksi Pilihan</span></h2>
         
         <div id="videoContainer">
@@ -394,6 +418,41 @@
         <div id="paginationContainer" class="pagination"></div>
     </main>
 
+    <div class="bottom-ads-group">
+        <div class="ad-border"><script>
+  atOptions = {
+    'key' : '7ea5d57c693f5d98e37f7069502b1711',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/7ea5d57c693f5d98e37f7069502b1711/invoke.js"></script></div>
+        <div class="ad-border"><script>
+  atOptions = {
+    'key' : '0e6a593eac9178deaca7849abb4f027a',
+    'format' : 'iframe',
+    'height' : 600,
+    'width' : 160,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/0e6a593eac9178deaca7849abb4f027a/invoke.js"></script></div>
+        <div class="ad-border"><script>
+  atOptions = {
+    'key' : '76db6ba997ac21aca86828c1574ab0b8',
+    'format' : 'iframe',
+    'height' : 300,
+    'width' : 160,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/76db6ba997ac21aca86828c1574ab0b8/invoke.js"></script></div>
+        <div class="ad-border"><script async="async" data-cfasync="false" src="https://pl29607350.effectivecpmnetwork.com/9d427ccd5928148f402d0f8ae6c3a4b6/invoke.js"></script>
+<div id="container-9d427ccd5928148f402d0f8ae6c3a4b6"></div></div>
+    </div>
+
     <footer>
         <p id="t-copyright"></p>
     </footer>
@@ -405,7 +464,7 @@
             </div>
             
             <div class="video-container">
-                <video id="player" controls controlsList="nodownload" playsinline>
+                <video id="player" controls controlsList="nodownload" playsinline preload="auto">
                     <source src="" type="video/mp4">
                     <span id="t-noSupport">Browser Anda tidak mendukung pemutar video HTML5.</span>
                 </video>
@@ -413,7 +472,6 @@
 
             <div class="modal-footer">
                 <div class="controls-group">
-                    
                     <div class="premium-quality-selector" id="qualitySelector" onclick="toggleQualityMenu(event)">
                         <div class="selector-trigger">
                             <span id="streamIndicator" class="status-dot"></span>
@@ -434,7 +492,7 @@
                                 <div class="custom-radio-circle"></div>
                             </div>
                             <div class="quality-option-row" data-value="360p" onclick="selectStreamQuality('360p', event)">
-                                <span id="t-opt-360p">(360p)</span>
+                                <span id="t-opt-360p">(360p) Hemat</span>
                                 <div class="custom-radio-circle"></div>
                             </div>
                         </div>
@@ -457,11 +515,67 @@
                         <span id="t-nextBtn">Berikutnya</span> <i class="fa-solid fa-forward"></i>
                     </button>
                 </div>
+
+
+<!-- --- (pasang kode disini) - IKLAN DALAM POPUP STREAMING --- -->                
+                <div class="ad-border" style="margin: 10px 0 0 0;">
+                    <script>
+  atOptions = {
+    'key' : '4617999ac228cdc0e28479e45256a55d',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/4617999ac228cdc0e28479e45256a55d/invoke.js"></script>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        // --- LOGIKA PERINGATAN UMUR 18+ (AGE GATE) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const isVerified = localStorage.getItem('age_verified');
+            if(!isVerified) {
+                document.getElementById('ageModal').style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Kunci scroll sebelum konfirmasi
+            } else {
+                document.getElementById('ageModal').style.display = 'none';
+            }
+        });
+
+        function confirmAge(isAdult) {
+            if(isAdult) {
+                localStorage.setItem('age_verified', 'true');
+                document.getElementById('ageModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            } else {
+                window.location.href = "https://www.google.com"; // Lempar keluar web
+            }
+        }
+
+        // --- INSTALL PWA (APLIKASI) SCRIPT ---
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'inline-flex'; // Munculkan tombol install jika support
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    installBtn.style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+
         // --- ENGINE MULTI-BAHASA OTOMATIS (i18n) ---
         const i18n = {
             en: {
@@ -483,51 +597,11 @@
                 original: "Asli (1080p)", hd: "HD (720p)", sd: "SD (480p)", dataSaver: "Hemat Data (360p)",
                 fullLandscape: "Full Landskap", fullPortrait: "Full Potret", download: "Unduh", checking: "Mengecek...", nextBtn: "Berikutnya",
                 alertFileFallback: "Berkas opsi resolusi {quality} tidak ditemukan di peladen. Mengunduh Resolusi Asli."
-            },
-            es: {
-                navHome: "Inicio", navExplore: "Explorar", navCollection: "Colección",
-                heroTitle: "Streaming Premium<br>Ilimitado", heroDesc: "Acceda a bibliotecas de video instantáneas de alta definición directamente desde su servidor de alojamiento dedicado de alta velocidad.",
-                commOfficial: "JOIN TELEGRAM", featuredColl: "Colección Destacada", loadingPremium: "Cargando Contenido Premium...",
-                emptyDir: "El directorio de almacenamiento está vacío.", failServer: "Error al conectar con el servidor de integración de archivos.",
-                next: "Siguiente", noSupport: "Su navegador no admite el reproductor de video HTML5.",
-                original: "Original (1080p)", hd: "HD (720p)", sd: "SD (480p)", dataSaver: "Ahorro de Datos (360p)",
-                fullLandscape: "Horizontal Completa", fullPortrait: "Vertical Completa", download: "Descargar", checking: "Comprobando...", nextBtn: "Siguiente",
-                alertFileFallback: "El archivo de opción de resolución {quality} no se encontró en el servidor. Descargando resolución original."
-            },
-            pt: {
-                navHome: "Início", navExplore: "Explorar", navCollection: "Coleção",
-                heroTitle: "Streaming Premium<br>Ilimitado", heroDesc: "Acesse bibliotecas de vídeo instantâneas de alta definição diretamente do seu servidor de hospedagem dedicado de alta velocidade.",
-                commOfficial: "JOIN TELEGRAM", featuredColl: "Coleção em Destaque", loadingPremium: "Carregando Conteúdo Premium...",
-                emptyDir: "O diretório de armazenamento está vazio.", failServer: "Falha ao conectar ao servidor de integração de arquivos.",
-                next: "Seguinte", noSupport: "Seu navegador não suporta o reprodutor de vídeo HTML5.",
-                original: "Original (1080p)", hd: "HD (720p)", sd: "SD (480p)", dataSaver: "Economia de Dados (360p)",
-                fullLandscape: "Paisagem Completa", fullPortrait: "Retrato Completo", download: "Baixar", checking: "Verificando...", nextBtn: "Seguinte",
-                alertFileFallback: "O arquivo de opção de resolução {quality} não foi encontrado no servidor. Baixando a resolução original."
-            },
-            ru: {
-                navHome: "Главная", navExplore: "Обзор", navCollection: "Коллекция",
-                heroTitle: "Премиум Стриминг<br>Без Границ", heroDesc: "Мгновенный доступ к библиотекам видео высокой четкости прямо с вашего выделенного высокоскоростного сервера хостинга.",
-                commOfficial: "JOIN TELEGRAM", featuredColl: "Рекомендуемая Коллекция", loadingPremium: "Загрузка Премиум Контента...",
-                emptyDir: "Каталог хранилища пуст.", failServer: "Не удалось подключиться к серверу интеграции файлов.",
-                next: "Далее", noSupport: "Ваш браузер не поддерживает HTML5 видеоплеер.",
-                original: "Оригинал (1080p)", hd: "HD (720p)", sd: "SD (480p)", dataSaver: "Экономия (360p)",
-                fullLandscape: "Альбомный Экран", fullPortrait: "Портретный Экран", download: "Скачать", checking: "Проверка...", nextBtn: "Далее",
-                alertFileFallback: "Файл с разрешением {quality} не найден на сервере. Скачивание в оригинальном разрешении."
-            },
-            hi: {
-                navHome: "होम", navExplore: "एक्सप्लोर करें", navCollection: "संग्रह",
-                heroTitle: "प्रीमियम स्ट्रीमिंग<br>असीमित", heroDesc: "अपने समर्पित हाई-स्पीड होस्टिंग सर्वर से सीधे तत्काल उच्च परिभाषा वीडियो लाइब्रेरी तक पहुंचें।",
-                commOfficial: "JOIN TELEGRAM", featuredColl: "विशेष रुप से प्रदर्शित संग्रह", loadingPremium: "प्रीमियम सामग्री लोड हो रही है...",
-                emptyDir: "स्टोरेज डायरेक्टरी खाली है।", failServer: "फ़ाइल एकीकरण सर्वर से कनेक्ट करने में विफल।",
-                next: "अगला", noSupport: "आपका ब्राउज़र HTML5 वीडियो प्लेयर का समर्थन नहीं करता है।",
-                original: "मूल (1080p)", hd: "एचडी (720p)", sd: "एसडी (480p)", dataSaver: "डेटा सावर (360p)",
-                fullLandscape: "पूर्ण लैंडस्केप", fullPortrait: "पूर्ण पोर्ट्रेट", download: "डाउनलोड", checking: "जांच की जा रही है...", nextBtn: "अगला",
-                alertFileFallback: "रिज़ॉल्यूशन विकल्प फ़ाइल {quality} सर्वर पर नहीं मिली। मूल रिज़ॉल्यूशन डाउनलोड किया जा रहा है।"
             }
         };
 
         let userLang = (navigator.language || navigator.userLanguage).substring(0, 2).toLowerCase();
-        if (!i18n[userLang]) userLang = 'en'; 
+        if (!i18n[userLang]) userLang = 'id'; 
 
         function t(key) { return i18n[userLang][key]; }
 
@@ -546,25 +620,19 @@
             document.getElementById('t-featuredColl').innerText = t('featuredColl');
             if (document.getElementById('t-loadingPremium')) document.getElementById('t-loadingPremium').innerText = t('loadingPremium');
             
-            // Mengatur footer copyright agar berubah otomatis mengikuti tahun berjalan saat ini
             const currentYear = new Date().getFullYear();
             document.getElementById('t-copyright').innerHTML = `${currentYear} &bull; Powered By PlayHub`;
             
             document.getElementById('t-noSupport').innerText = t('noSupport');
-            
-            // Dropdown Option Labels
             document.getElementById('t-opt-original').innerText = t('original');
             document.getElementById('t-opt-720p').innerText = t('hd');
             document.getElementById('t-opt-480p').innerText = t('sd');
             document.getElementById('t-opt-360p').innerText = t('dataSaver');
-            
-            // Modal Elements
             document.getElementById('t-fullLandscape').innerText = t('fullLandscape');
             document.getElementById('t-fullPortrait').innerText = t('fullPortrait');
             document.getElementById('t-download').innerText = t('download');
             document.getElementById('t-nextBtn').innerText = t('nextBtn');
             
-            // Sync current active selector text context
             selectedQualityLabel.innerText = getQualityLabel(activeQualityMode);
         }
 
@@ -575,9 +643,8 @@
         let currentPlayIndex = 0; 
         let currentVideoBaseUrl = ""; 
         let activeQualityMode = "original";
-        
         let currentPage = parseInt(localStorage.getItem('playhub_current_page')) || 1;
-        const itemsPerPage = 5;
+        const itemsPerPage = 6;
 
         const videoContainer = document.getElementById('videoContainer');
         const paginationContainer = document.getElementById('paginationContainer');
@@ -600,36 +667,22 @@
             try {
                 const response = await fetch(API_URL);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                
                 const data = await response.json();
                 globalVideos = shuffleArray(data);
                 
                 if(globalVideos.length === 0) {
-                    videoContainer.innerHTML = `
-                        <div class="error-state">
-                            <i class="fa-regular fa-folder-open" style="font-size:36px; margin-bottom:15px;"></i>
-                            <p>${t('emptyDir')}</p>
-                        </div>
-                    `;
+                    videoContainer.innerHTML = `<div class="error-state"><i class="fa-regular fa-folder-open"></i><p>${t('emptyDir')}</p></div>`;
                     return;
                 }
-                
                 renderVideosByPage();
                 checkAndRestoreVideoState(); 
             } catch (error) {
-                console.error("Gagal mendeteksi video:", error);
-                videoContainer.innerHTML = `
-                    <div class="error-state">
-                        <i class="fa-solid fa-triangle-exclamation" style="font-size:36px; margin-bottom:15px; color:var(--primary);"></i>
-                        <p>${t('failServer')}</p>
-                    </div>
-                `;
+                videoContainer.innerHTML = `<div class="error-state"><i class="fa-solid fa-triangle-exclamation"></i><p>${t('failServer')}</p></div>`;
             }
         }
 
         function renderVideosByPage() {
             if(globalVideos.length === 0) return;
-
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
             const videosToRender = globalVideos.slice(startIndex, endIndex);
@@ -642,13 +695,9 @@
                 
                 htmlContent += `
                     <div class="video-card" tabindex="0" onclick="openModal(${absoluteIndex})">
-                        <div class="thumb-loader" id="loader-${absoluteIndex}">
-                            <i class="fa-solid fa-circle-notch fa-spin"></i>
-                        </div>
+                        <div class="thumb-loader" id="loader-${absoluteIndex}"><i class="fa-solid fa-circle-notch fa-spin"></i></div>
                         <video id="vid-${absoluteIndex}" src="${fullVideoUrl}#t=2" preload="metadata" muted playsinline class="video-thumb"></video>
-                        <div class="play-overlay">
-                            <i class="fa-solid fa-play"></i>
-                        </div>
+                        <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
                         <div class="video-info-badge" id="badge-${absoluteIndex}">
                             <span class="duration-text"><i class="fa-regular fa-clock"></i> --:--</span>
                             <span class="badge-divider">|</span>
@@ -656,13 +705,36 @@
                         </div>
                     </div>
                 `;
+                
+                // 1 BORDER IKLAN DI TENGAH DAFTAR VIDEO (SETELAH 3 VIDEO)
+                if (index === 2) {
+                    htmlContent += `
+                        <div class="ad-border grid-ad" id="mid-list-ad"></div>
+                    `;
+                }
             });
 
             htmlContent += '</div>';
             videoContainer.innerHTML = htmlContent;
 
+            // Suntik script iklan secara dinamis karena innerHTML memblokir tag script biasa
+            const midAdContainer = document.getElementById('mid-list-ad');
+            if (midAdContainer) {
+                window.atOptions = {
+                    'key' : '698acc644d68f0d1da94f04d6e9851e3',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+                const adScript = document.createElement('script');
+                adScript.src = "https://www.highperformanceformat.com/698acc644d68f0d1da94f04d6e9851e3/invoke.js";
+                midAdContainer.appendChild(adScript);
+            }
+
             renderAdvancedPagination();
 
+            // Load Video Details
             videosToRender.forEach((video, index) => {
                 const absoluteIndex = startIndex + index;
                 const vidEl = document.getElementById(`vid-${absoluteIndex}`);
@@ -673,67 +745,29 @@
                     if (duration && isFinite(duration)) {
                         const mins = Math.floor(duration / 60);
                         const secs = Math.floor(duration % 60);
-                        const formatMins = mins < 10 ? '0' + mins : mins;
-                        const formatSecs = secs < 10 ? '0' + secs : secs;
-                        badgeTextEl.innerHTML = `<i class="fa-regular fa-clock"></i> ${formatMins}:${formatSecs}`;
+                        badgeTextEl.innerHTML = `<i class="fa-regular fa-clock"></i> ${mins < 10 ? '0'+mins : mins}:${secs < 10 ? '0'+secs : secs}`;
                     }
                 };
-
                 if (vidEl) {
                     vidEl.addEventListener('loadeddata', function() {
                         updateDurationUI(this.duration);
                         if(loaderEl) loaderEl.style.opacity = '0';
                         setTimeout(() => { if(loaderEl) loaderEl.style.display = 'none'; }, 300);
                     });
-                    
-                    if (vidEl.readyState >= 2) {
-                        updateDurationUI(vidEl.duration);
-                        if(loaderEl) loaderEl.style.display = 'none';
-                    }
                 }
             });
         }
 
         function renderAdvancedPagination() {
             const totalPages = Math.ceil(globalVideos.length / itemsPerPage);
-            if (totalPages <= 1) {
-                paginationContainer.innerHTML = '';
-                return;
-            }
-
+            if (totalPages <= 1) { paginationContainer.innerHTML = ''; return; }
             let paginationHtml = '';
-            const createBtn = (pageNum, isActive) => {
-                return `<button class="page-btn ${isActive ? 'active' : ''}" onclick="changePage(${pageNum})">${pageNum}</button>`;
-            };
-
-            let pages = [];
-            if (totalPages <= 5) {
-                for (let i = 1; i <= totalPages; i++) pages.push(i);
-            } else {
-                if (currentPage <= 3) {
-                    pages = [1, 2, 3, '...', totalPages];
-                } else if (currentPage >= totalPages - 2) {
-                    pages = [1, '...', totalPages - 2, totalPages - 1, totalPages];
-                } else {
-                    pages = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
-                }
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHtml += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
             }
-
-            pages.forEach(p => {
-                if (p === '...') {
-                    paginationHtml += `<span class="page-dots">...</span>`;
-                } else {
-                    paginationHtml += createBtn(p, p === currentPage);
-                }
-            });
-
             if (currentPage < totalPages) {
-                paginationHtml += `
-                    <button class="page-btn page-next" onclick="changePage(${currentPage + 1})">
-                        ${t('next')} <i class="fa-solid fa-chevron-right"></i>
-                    </button>`;
+                paginationHtml += `<button class="page-btn page-next" onclick="changePage(${currentPage + 1})">${t('next')} <i class="fa-solid fa-chevron-right"></i></button>`;
             }
-
             paginationContainer.innerHTML = paginationHtml;
         }
 
@@ -752,164 +786,106 @@
         function selectStreamQuality(quality, event) {
             if(event) event.stopPropagation();
             activeQualityMode = quality;
-            
-            document.querySelectorAll('.quality-option-row').forEach(row => {
-                row.classList.remove('option-selected');
-            });
-            
-            const targetRow = document.querySelector(`.quality-option-row[data-value="${quality}"]`);
-            if(targetRow) targetRow.classList.add('option-selected');
-            
+            document.querySelectorAll('.quality-option-row').forEach(row => row.classList.remove('option-selected'));
+            document.querySelector(`.quality-option-row[data-value="${quality}"]`)?.classList.add('option-selected');
             selectedQualityLabel.innerText = getQualityLabel(quality);
             qualitySelector.classList.remove('menu-open');
-            
             changeQuality(quality, false);
         }
 
-        document.addEventListener('click', () => {
-            qualitySelector.classList.remove('menu-open');
-        });
+        document.addEventListener('click', () => qualitySelector.classList.remove('menu-open'));
 
         function openModal(absoluteIndex) {
             currentPlayIndex = absoluteIndex;
-            const video = globalVideos[absoluteIndex];
-            
-            currentVideoBaseUrl = BASE_HOST_URL + video.fileName;
-            resetVideoResolutionSizing();
-            modal.classList.add('active');
-            
-            changeQuality(activeQualityMode, true);
-        }
-
-        function resetVideoResolutionSizing() {
+            currentVideoBaseUrl = BASE_HOST_URL + globalVideos[absoluteIndex].fileName;
             player.style.filter = 'none';
+            modal.classList.add('active');
+            changeQuality(activeQualityMode, true);
         }
 
         function updateIndicatorDot(quality) {
             streamIndicator.className = "status-dot"; 
-            if(quality !== 'original') {
-                streamIndicator.classList.add(`dot-${quality}`);
-            }
+            if(quality !== 'original') streamIndicator.classList.add(`dot-${quality}`);
         }
 
         function changeQuality(quality, isNewVideo = false) {
             if(!currentVideoBaseUrl) return;
-
             const currentTime = isNewVideo ? 0 : player.currentTime;
             const isPaused = isNewVideo ? false : player.paused;
-            
             updateIndicatorDot(quality);
 
-            const resolutionProfiles = {
-                'original': { filter: 'none' },
-                '720p': { filter: 'contrast(1.02) saturate(1.05)' },
-                '480p': { filter: 'blur(0.35px) contrast(0.98) saturate(0.97)' },
-                '360p': { filter: 'blur(0.65px) contrast(0.94) saturate(0.92)' }
-            };
-
-            const activeProfile = resolutionProfiles[quality] || resolutionProfiles['original'];
             let targetUrl = currentVideoBaseUrl; 
-
             if (quality !== 'original') {
                 targetUrl = currentVideoBaseUrl.replace(/\.mp4$/i, `_${quality}.mp4`);
             }
             
             player.src = targetUrl;
-            
             player.onloadedmetadata = function() {
-                applyVisualProfile(activeProfile);
                 player.currentTime = currentTime;
-                if(!isPaused || isNewVideo) player.play().catch(e => console.log("Autoplay ditangguhkan browser."));
-                player.onloadedmetadata = null;
+                if(!isPaused || isNewVideo) player.play().catch(e => console.log("Autoplay ditahan browser."));
             };
-
             player.onerror = function() {
-                player.onerror = null; 
                 player.src = currentVideoBaseUrl; 
-                
                 player.onloadedmetadata = function() {
-                    applyVisualProfile(activeProfile);
                     player.currentTime = currentTime;
-                    if(!isPaused || isNewVideo) player.play().catch(e => console.log("Autoplay ditangguhkan browser."));
-                    player.onloadedmetadata = null;
+                    if(!isPaused || isNewVideo) player.play().catch(e => console.log("Autoplay ditahan browser."));
                 };
             };
         }
 
-        function applyVisualProfile(profile) {
-            player.style.filter = profile.filter;
-        }
+        // --- ANTI NGELAG: AUTO DOWNGRADE SAAT SINYAL JELEK ---
+        let lagCounter = 0;
+        player.addEventListener('waiting', () => {
+            lagCounter++;
+            if(lagCounter >= 3 && activeQualityMode !== '360p') {
+                // Sinyal jelek terdeteksi, otomatis ubah ke resolusi paling rendah
+                selectStreamQuality('360p');
+                alert("Sinyal internet tidak stabil. Kualitas video diturunkan otomatis agar tetap lancar.");
+                lagCounter = 0;
+            }
+        });
+        player.addEventListener('playing', () => {
+            if(lagCounter > 0) lagCounter = lagCounter - 0.5; // Mengurangi hitungan pelan-pelan saat lancar
+        });
 
         async function triggerFullscreenLock(orientationType) {
             try {
-                if (player.requestFullscreen) {
-                    await player.requestFullscreen();
-                } else if (player.webkitRequestFullscreen) {
-                    await player.webkitRequestFullscreen();
-                } else if (player.mozRequestFullScreen) {
-                    await player.mozRequestFullScreen();
-                } else if (player.msRequestFullscreen) {
-                    await player.msRequestFullscreen();
-                }
-
-                if (screen.orientation && screen.orientation.lock) {
-                    await screen.orientation.lock(orientationType).catch(e => console.log("Kunci orientasi ditolak perangkat desktop/tertentu."));
-                }
-            } catch (error) {
-                console.error("Gagal memicu mode layar penuh:", error);
-            }
+                if (player.requestFullscreen) await player.requestFullscreen();
+                else if (player.webkitRequestFullscreen) await player.webkitRequestFullscreen();
+                if (screen.orientation && screen.orientation.lock) await screen.orientation.lock(orientationType).catch(e=>e);
+            } catch (error) { console.error(error); }
         }
 
         async function downloadCurrentVideo() {
             if (!currentVideoBaseUrl) return;
+            let targetUrl = currentVideoBaseUrl;
+            if (activeQualityMode !== 'original') targetUrl = currentVideoBaseUrl.replace(/\.mp4$/i, `_${activeQualityMode}.mp4`);
             
-            let targetDownloadUrl = currentVideoBaseUrl;
-            
-            if (activeQualityMode !== 'original') {
-                targetDownloadUrl = currentVideoBaseUrl.replace(/\.mp4$/i, `_${activeQualityMode}.mp4`);
-            }
-            
-            const originalBtnContent = downloadBtn.innerHTML;
+            const originalBtn = downloadBtn.innerHTML;
             downloadBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> ${t('checking')}`;
             downloadBtn.disabled = true;
 
             try {
-                const response = await fetch(targetDownloadUrl, { method: 'HEAD' });
-                
-                if (!response.ok && activeQualityMode !== 'original') {
-                    let formattedLabel = activeQualityMode === '720p' ? 'HD (720p)' : activeQualityMode === '480p' ? 'SD (480p)' : 'Data Saver (360p)';
-                    alert(t('alertFileFallback').replace('{quality}', formattedLabel));
-                    targetDownloadUrl = currentVideoBaseUrl;
-                }
-                
-                triggerBrowserDownload(targetDownloadUrl);
-            } catch (error) {
+                const res = await fetch(targetUrl, { method: 'HEAD' });
+                if (!res.ok && activeQualityMode !== 'original') targetUrl = currentVideoBaseUrl;
+                triggerBrowserDownload(targetUrl);
+            } catch (e) {
                 triggerBrowserDownload(currentVideoBaseUrl);
             } finally {
-                downloadBtn.innerHTML = originalBtnContent;
-                downloadBtn.disabled = false;
-                applyLanguage(); 
+                downloadBtn.innerHTML = originalBtn; downloadBtn.disabled = false; applyLanguage(); 
             }
         }
 
         function triggerBrowserDownload(url) {
-            const downloadAnchor = document.createElement('a');
-            downloadAnchor.href = url;
-            downloadAnchor.target = '_blank';
-            const cleanFileName = url.substring(url.lastIndexOf('/') + 1);
-            downloadAnchor.setAttribute('download', cleanFileName);
-            document.body.appendChild(downloadAnchor);
-            downloadAnchor.click();
-            document.body.removeChild(downloadAnchor);
+            const a = document.createElement('a'); a.href = url; a.target = '_blank';
+            a.download = url.substring(url.lastIndexOf('/') + 1);
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
         }
 
         function playNextVideo() {
             if(globalVideos.length === 0) return;
             currentPlayIndex++;
-            
-            if(currentPlayIndex >= globalVideos.length) {
-                currentPlayIndex = 0;
-            }
+            if(currentPlayIndex >= globalVideos.length) currentPlayIndex = 0;
             
             const expectedPage = Math.floor(currentPlayIndex / itemsPerPage) + 1;
             if(expectedPage !== currentPage) {
@@ -917,7 +893,6 @@
                 localStorage.setItem('playhub_current_page', currentPage);
                 renderVideosByPage();
             }
-
             openModal(currentPlayIndex);
         }
 
@@ -926,27 +901,21 @@
             localStorage.removeItem('playhub_active_video_index');
             localStorage.removeItem('playhub_active_video_time');
             setTimeout(() => {
-                player.pause();
-                player.src = "";
-                resetVideoResolutionSizing();
-                if (screen.orientation && screen.orientation.unlock) {
-                    screen.orientation.unlock();
-                }
+                player.pause(); player.src = ""; player.style.filter = 'none';
+                if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock();
             }, 400);
         }
 
-        // --- MANAJEMEN AUTO-REFRESH TEPAT 10 MENIT DENGAN SNAPSHOT DATA CACHE ---
+        // --- MANAJEMEN AUTO-REFRESH 10 MENIT ---
         setTimeout(() => {
             localStorage.setItem('playhub_current_page', currentPage);
-            
             if(modal.classList.contains('active')) {
                 localStorage.setItem('playhub_active_video_index', currentPlayIndex);
                 localStorage.setItem('playhub_active_video_time', player.currentTime);
                 localStorage.setItem('playhub_active_quality', activeQualityMode);
             }
-            
             location.reload();
-        }, 600000); // 600.000 ms = Sempurna 10 Menit
+        }, 600000); 
 
         function checkAndRestoreVideoState() {
             const savedVideoIndex = localStorage.getItem('playhub_active_video_index');
@@ -964,8 +933,7 @@
                 currentVideoBaseUrl = BASE_HOST_URL + globalVideos[restoredIndex].fileName;
                 
                 document.querySelectorAll('.quality-option-row').forEach(row => row.classList.remove('option-selected'));
-                const targetRow = document.querySelector(`.quality-option-row[data-value="${restoredQuality}"]`);
-                if(targetRow) targetRow.classList.add('option-selected');
+                document.querySelector(`.quality-option-row[data-value="${restoredQuality}"]`)?.classList.add('option-selected');
                 selectedQualityLabel.innerText = getQualityLabel(restoredQuality);
                 
                 modal.classList.add('active');
@@ -978,16 +946,8 @@
                 
                 player.src = targetUrl;
                 player.onloadedmetadata = function() {
-                    const resolutionProfiles = {
-                        'original': { filter: 'none' },
-                        '720p': { filter: 'contrast(1.02) saturate(1.05)' },
-                        '480p': { filter: 'blur(0.35px) contrast(0.98) saturate(0.97)' },
-                        '360p': { filter: 'blur(0.65px) contrast(0.94) saturate(0.92)' }
-                    };
-                    player.style.filter = (resolutionProfiles[restoredQuality] || resolutionProfiles['original']).filter;
                     player.currentTime = restoredTime;
-                    player.play().catch(e => console.log("Autoplay tertahan kebijakan privacy browser."));
-                    player.onloadedmetadata = null;
+                    player.play().catch(e => console.log("Autoplay tertahan kebijakan browser."));
                 };
             }
         }
@@ -999,5 +959,6 @@
             fetchServerVideos();
         });
     </script>
+    <script src="https://pl29607357.effectivecpmnetwork.com/27/36/d2/2736d2664d5dd1fbaff8dcdfc515f746.js"></script>
 </body>
 </html>
